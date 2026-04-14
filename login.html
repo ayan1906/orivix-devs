@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orivix Devs — Login</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --card: #1a1a26;
+            --accent: #7c5cfc;
+            --accent2: #c850f0;
+            --teal: #00e5cc;
+            --gold: #f5c542;
+            --text: #f0f0fa;
+            --muted: #8888aa;
+            --border: rgba(124, 92, 252, 0.18);
+            --red: #ff5c5c;
+            --green: #4cdf80;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Hind Siliguri', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blob-wrap {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.15;
+            animation: bm 12s ease-in-out infinite alternate;
+        }
+
+        .blob1 {
+            width: 520px;
+            height: 520px;
+            background: var(--accent);
+            top: -160px;
+            left: -160px;
+        }
+
+        .blob2 {
+            width: 420px;
+            height: 420px;
+            background: var(--accent2);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        .blob3 {
+            width: 300px;
+            height: 300px;
+            background: var(--teal);
+            top: 50%;
+            left: 55%;
+            opacity: .08;
+            animation-delay: -8s;
+        }
+
+        @keyframes bm {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(40px, 30px);
+            }
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.88);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 32px;
+            height: 62px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+        }
+
+        .nav-brand span {
+            color: var(--accent);
+        }
+
+        .nav-link {
+            font-size: .85rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 940px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media(max-width:700px) {
+            .wrapper {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .hero-side {
+                display: none;
+            }
+        }
+
+        /* HERO SIDE */
+        .hero-side {}
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(124, 92, 252, 0.12);
+            border: 1px solid var(--border);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #fff 0%, var(--accent) 55%, var(--teal) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+
+        .hero-sub {
+            font-size: 1rem;
+            color: var(--muted);
+            line-height: 1.75;
+            margin-bottom: 30px;
+        }
+
+        .perks {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .perk {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: .9rem;
+            color: #ccc;
+        }
+
+        .perk-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            background: rgba(124, 92, 252, 0.15);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .stat-lbl {
+            font-size: .75rem;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        /* FORM SIDE */
+        .form-side {}
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 36px 32px;
+            box-shadow: 0 8px 48px rgba(124, 92, 252, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2), var(--teal));
+        }
+
+        .tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 4px;
+            margin-bottom: 26px;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: .88rem;
+            color: var(--muted);
+            transition: all .25s;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+        }
+
+        .panel {
+            display: none;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        .field {
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+            font-size: .8rem;
+            color: var(--muted);
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .field input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 15px;
+            color: var(--text);
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: .92rem;
+            outline: none;
+            transition: border-color .2s;
+        }
+
+        .field input:focus {
+            border-color: var(--accent);
+        }
+
+        .field input::placeholder {
+            color: var(--muted);
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            border: none;
+            padding: 14px;
+            border-radius: 13px;
+            font-family: 'Hind Siliguri', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform .2s, box-shadow .2s;
+            margin-top: 4px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(124, 92, 252, 0.4);
+        }
+
+        .divider {
+            text-align: center;
+            color: var(--muted);
+            font-size: .78rem;
+            margin: 14px 0;
+        }
+
+        .alert {
+            padding: 11px 14px;
+            border-radius: 10px;
+            font-size: .85rem;
+            margin-bottom: 16px;
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .alert.error {
+            background: rgba(255, 92, 92, 0.1);
+            border: 1px solid rgba(255, 92, 92, 0.25);
+            color: var(--red);
+            display: flex;
+        }
+
+        .alert.success {
+            background: rgba(76, 223, 128, 0.1);
+            border: 1px solid rgba(76, 223, 128, 0.25);
+            color: var(--green);
+            display: flex;
+        }
+
+        .switch-txt {
+            text-align: center;
+            font-size: .83rem;
+            color: var(--muted);
+        }
+
+        .switch-txt a {
+            color: var(--accent);
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 22px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: .78rem;
+        }
+
+        footer strong {
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="blob-wrap">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+    </div>
+
+    <nav>
+        <div class="nav-brand">Orivix<span> Devs</span></div>
+        <a class="nav-link" href="index.html">← মূল পাতায় ফিরুন</a>
+    </nav>
+
+    <main>
+        <div class="wrapper">
+
+            <!-- HERO SIDE -->
+            <div class="hero-side">
+                <div class="hero-badge">✦ Student Portal</div>
+                <h1 class="hero-title">তোমার Digital<br>Career শুরু হোক</h1>
+                <p class="hero-sub">একবার রেজিস্ট্রেশন করো — পাও Lifetime Access, Unique Student ID এবং সব Course
+                    Materials।</p>
+                <div class="perks">
+                    <div class="perk">
+                        <div class="perk-icon">🎯</div> একদম Beginners-দের জন্য ডিজাইন করা
+                    </div>
+                    <div class="perk">
+                        <div class="perk-icon">📹</div> সব Class Record সংরক্ষিত থাকবে
+                    </div>
+                    <div class="perk">
+                        <div class="perk-icon">🤝</div> Private Group এ Lifetime Support
+                    </div>
+                    <div class="perk">
+                        <div class="perk-icon">📜</div> Course শেষে Certificate প্রদান
+                    </div>
+                    <div class="perk">
+                        <div class="perk-icon">💰</div> Freelancing ক্যারিয়ার গাইডলাইন
+                    </div>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-box">
+                        <div class="stat-num">৩০</div>
+                        <div class="stat-lbl">Live Class</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num">১০</div>
+                        <div class="stat-lbl">Module</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num">৩,০০০৳</div>
+                        <div class="stat-lbl">সম্পূর্ণ কোর্স</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORM SIDE -->
+            <div class="form-side">
+                <div class="card">
+                    <div class="tabs">
+                        <div class="tab active" id="tab-reg" onclick="switchTab('register')">📝 রেজিস্ট্রেশন</div>
+                        <div class="tab" id="tab-log" onclick="switchTab('login')">🔐 লগইন</div>
+                    </div>
+
+                    <!-- REGISTER -->
+                    <div class="panel active" id="registerPanel">
+                        <div class="alert" id="regAlert"></div>
+                        <div class="input-row">
+                            <div class="field"><label>পূর্ণ নাম *</label><input type="text" id="regName"
+                                    placeholder="আপনার নাম"></div>
+                            <div class="field"><label>মোবাইল *</label><input type="tel" id="regPhone"
+                                    placeholder="01XXXXXXXXX"></div>
+                        </div>
+                        <div class="field"><label>Gmail / Email *</label><input type="email" id="regEmail"
+                                placeholder="example@gmail.com"></div>
+                        <div class="field"><label>পাসওয়ার্ড * (কমপক্ষে ৬ অক্ষর)</label><input type="password"
+                                id="regPass" placeholder="••••••••"></div>
+                        <div class="field"><label>পাসওয়ার্ড নিশ্চিত করুন *</label><input type="password" id="regPass2"
+                                placeholder="••••••••"></div>
+                        <button class="btn" onclick="register()">✅ রেজিস্ট্রেশন করুন</button>
+                        <div class="divider">— অথবা —</div>
+                        <p class="switch-txt">ইতিমধ্যে অ্যাকাউন্ট আছে? <a onclick="switchTab('login')">লগইন করুন</a></p>
+                    </div>
+
+                    <!-- LOGIN -->
+                    <div class="panel" id="loginPanel">
+                        <div class="alert" id="loginAlert"></div>
+                        <div class="field"><label>Gmail অথবা Student ID</label><input type="text" id="loginId"
+                                placeholder="email@gmail.com অথবা OD-0001"></div>
+                        <div class="field"><label>পাসওয়ার্ড</label><input type="password" id="loginPass"
+                                placeholder="••••••••"></div>
+                        <button class="btn" onclick="login()">🚀 লগইন করুন</button>
+                        <div class="divider">— অথবা —</div>
+                        <p class="switch-txt">অ্যাকাউন্ট নেই? <a onclick="switchTab('register')">রেজিস্ট্রেশন করুন</a>
+                        </p>
+                        <p style="text-align:center;margin-top:12px;font-size:.75rem;color:var(--muted);"><a
+                                style="color:var(--muted);cursor:pointer;" onclick="adminLogin()">🔑 Admin Login</a></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>© 2025 <strong>Orivix Devs</strong> · সর্বস্বত্ব সংরক্ষিত</footer>
+
+    <script>
+        const STORE_KEY = 'orivix_students', SESSION_KEY = 'orivix_session', ADMIN_PASS = 'orivix@admin2025';
+        function getStudents() { try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; } catch { return []; } }
+        function saveStudents(a) { localStorage.setItem(STORE_KEY, JSON.stringify(a)); }
+        function setSession(d) { sessionStorage.setItem(SESSION_KEY, JSON.stringify(d)); }
+        function getSession() { try { return JSON.parse(sessionStorage.getItem(SESSION_KEY)); } catch { return null; } }
+
+        function genId() {
+            const s = getStudents();
+            return 'OD-' + String(s.length + 1).padStart(4, '0');
+        }
+        function showAlert(id, msg, type) { const el = document.getElementById(id); el.textContent = msg; el.className = 'alert ' + type; }
+        function hideAlert(id) { document.getElementById(id).className = 'alert'; }
+
+        function switchTab(tab) {
+            document.getElementById('tab-reg').classList.toggle('active', tab === 'register');
+            document.getElementById('tab-log').classList.toggle('active', tab === 'login');
+            document.getElementById('registerPanel').classList.toggle('active', tab === 'register');
+            document.getElementById('loginPanel').classList.toggle('active', tab === 'login');
+            hideAlert('regAlert'); hideAlert('loginAlert');
+        }
+
+        function register() {
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim().toLowerCase();
+            const phone = document.getElementById('regPhone').value.trim();
+            const pass = document.getElementById('regPass').value;
+            const pass2 = document.getElementById('regPass2').value;
+            if (!name || !email || !phone || !pass || !pass2) return showAlert('regAlert', '⚠️ সব ঘর পূরণ করুন।', 'error');
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showAlert('regAlert', '⚠️ সঠিক Email দিন।', 'error');
+            if (pass.length < 6) return showAlert('regAlert', '⚠️ পাসওয়ার্ড কমপক্ষে ৬ অক্ষর।', 'error');
+            if (pass !== pass2) return showAlert('regAlert', '⚠️ পাসওয়ার্ড মিলছে না।', 'error');
+            const students = getStudents();
+            if (students.find(s => s.email === email)) return showAlert('regAlert', '⚠️ এই Email ইতিমধ্যে ব্যবহার হয়েছে।', 'error');
+            const student = { id: genId(), name, email, phone, pass, joinDate: new Date().toLocaleDateString('bn-BD') };
+            students.push(student); saveStudents(students);
+            showAlert('regAlert', `✅ সফল! তোমার ID: ${student.id} — Dashboard-এ যাচ্ছো…`, 'success');
+            setTimeout(() => { setSession({ type: 'student', data: student }); window.location.href = 'orivixdevs.html'; }, 1600);
+        }
+
+        function login() {
+            const idOrEmail = document.getElementById('loginId').value.trim().toLowerCase();
+            const pass = document.getElementById('loginPass').value;
+            if (!idOrEmail || !pass) return showAlert('loginAlert', '⚠️ Email/ID এবং পাসওয়ার্ড দিন।', 'error');
+            const student = getStudents().find(s => (s.email === idOrEmail || s.id.toLowerCase() === idOrEmail) && s.pass === pass);
+            if (!student) return showAlert('loginAlert', '❌ Email/ID বা পাসওয়ার্ড সঠিক নয়।', 'error');
+            showAlert('loginAlert', '✅ লগইন সফল! Dashboard-এ যাচ্ছো…', 'success');
+            setTimeout(() => { setSession({ type: 'student', data: student }); window.location.href = 'orivixdevs.html'; }, 1200);
+        }
+
+        function adminLogin() {
+            const p = prompt('Admin পাসওয়ার্ড:');
+            if (p === ADMIN_PASS) { setSession({ type: 'admin' }); window.location.href = 'orivixdevs.html'; }
+            else if (p !== null) alert('❌ ভুল পাসওয়ার্ড।');
+        }
+
+        // If already logged in, redirect
+        (function () {
+            const s = getSession();
+            if (s) window.location.href = 'orivixdevs.html';
+        })();
+
+        document.addEventListener('keydown', e => {
+            if (e.key !== 'Enter') return;
+            if (document.getElementById('registerPanel').classList.contains('active')) register();
+            else login();
+        });
+    </script>
+</body>
+
+</html>
