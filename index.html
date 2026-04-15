@@ -1312,7 +1312,7 @@
                 <li><span>✓</span> PDF Notes ও Resources</li>
                 <li><span>✓</span> Certificate of Completion</li>
             </ul>
-            <a href="login.html" class="enroll-btn" id="enrollBtn">👉 এখনই Enroll করো</a>
+            <a href="enroll.html" class="enroll-btn" id="enrollBtn">👉 এখনই Enroll করো</a>
             <p style="margin-top:12px;font-size:.76rem;color:var(--muted);">bKash · Nagad · Bank Transfer গ্রহণযোগ্য</p>
         </div>
     </div>
@@ -1623,15 +1623,12 @@
             document.getElementById('bannerMeta').textContent = s.email + ' · ' + s.joinDate;
             document.getElementById('bannerIdPill').textContent = s.id;
             // update CTA
-            document.getElementById('heroCta').textContent = '✅ তুমি Enrolled আছো';
             document.getElementById('heroCta').style.background = 'rgba(76,223,128,0.15)';
             document.getElementById('heroCta').style.webkitTextFillColor = 'var(--green)';
             document.getElementById('heroCta').style.border = '1px solid rgba(76,223,128,0.3)';
             document.getElementById('heroCta').removeAttribute('href');
-            document.getElementById('enrollBtn').textContent = '✅ তুমি ইতিমধ্যে Enrolled';
             document.getElementById('enrollBtn').style.background = 'rgba(76,223,128,0.15)';
             document.getElementById('enrollBtn').style.color = 'var(--green)';
-            document.getElementById('enrollBtn').removeAttribute('href');
         }
 
         function setupAdmin() {
