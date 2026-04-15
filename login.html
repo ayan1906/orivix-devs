@@ -560,7 +560,7 @@
             const student = { id: genId(), name, email, phone, pass, joinDate: new Date().toLocaleDateString('bn-BD') };
             students.push(student); saveStudents(students);
             showAlert('regAlert', `✅ সফল! তোমার ID: ${student.id} — Dashboard-এ যাচ্ছো…`, 'success');
-            setTimeout(() => { setSession({ type: 'student', data: student }); window.location.href = 'orivixdevs.html'; }, 1600);
+            setTimeout(() => { setSession({ type: 'student', data: student }); window.location.href = 'index.html'; }, 1600);
         }
 
         function login() {
@@ -570,19 +570,19 @@
             const student = getStudents().find(s => (s.email === idOrEmail || s.id.toLowerCase() === idOrEmail) && s.pass === pass);
             if (!student) return showAlert('loginAlert', '❌ Email/ID বা পাসওয়ার্ড সঠিক নয়।', 'error');
             showAlert('loginAlert', '✅ লগইন সফল! Dashboard-এ যাচ্ছো…', 'success');
-            setTimeout(() => { setSession({ type: 'student', data: student }); window.location.href = 'orivixdevs.html'; }, 1200);
+            setTimeout(() => { setSession({ type: 'student', data: student }); window.location.href = 'index.html'; }, 1200);
         }
 
         function adminLogin() {
             const p = prompt('Admin পাসওয়ার্ড:');
-            if (p === ADMIN_PASS) { setSession({ type: 'admin' }); window.location.href = 'orivixdevs.html'; }
+            if (p === ADMIN_PASS) { setSession({ type: 'admin' }); window.location.href = 'index.html'; }
             else if (p !== null) alert('❌ ভুল পাসওয়ার্ড।');
         }
 
         // If already logged in, redirect
         (function () {
             const s = getSession();
-            if (s) window.location.href = 'orivixdevs.html';
+            if (s) window.location.href = 'index.html';
         })();
 
         document.addEventListener('keydown', e => {
