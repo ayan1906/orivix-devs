@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Enrollment — Orivix Devs</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --card: #1a1a26;
+            --accent: #7c5cfc;
+            --accent2: #c850f0;
+            --teal: #00e5cc;
+            --gold: #f5c542;
+            --text: #f0f0fa;
+            --muted: #8888aa;
+            --border: rgba(124, 92, 252, 0.18);
+            --red: #ff5c5c;
+            --green: #4cdf80;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Hind Siliguri', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blob-wrap {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: .15;
+            animation: bm 12s ease-in-out infinite alternate;
+        }
+
+        .blob1 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent);
+            top: -100px;
+            left: -100px;
+        }
+
+        .blob2 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent2);
+            bottom: -80px;
+            right: -80px;
+            animation-delay: -4s;
+        }
+
+        @keyframes bm {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(40px, 30px);
+            }
+        }
+
+        /* NAV */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, .88);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 32px;
+            height: 62px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .nav-brand span {
+            color: var(--accent);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(124, 92, 252, .1);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: .82rem;
+        }
+
+        .user-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--teal);
+        }
+
+        .back-link {
+            font-size: .85rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .back-link:hover {
+            color: var(--text);
+        }
+
+        /* PAGE */
+        .page {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 50px 20px;
+            position: relative;
+            z-index: 1;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        /* SUMMARY CARD */
+        .summary-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
+            width: 100%;
+            max-width: 320px;
+            position: relative;
+            overflow: hidden;
+            align-self: flex-start;
+        }
+
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--teal), var(--accent));
+        }
+
+        .sum-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--teal);
+        }
+
+        .price-big {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-align: center;
+            margin: 14px 0 3px;
+        }
+
+        .price-note {
+            text-align: center;
+            color: var(--muted);
+            font-size: .8rem;
+            margin-bottom: 16px;
+        }
+
+        .sum-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 9px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+            font-size: .87rem;
+        }
+
+        .sum-row:last-child {
+            border-bottom: none;
+        }
+
+        .sum-label {
+            color: var(--muted);
+        }
+
+        .sum-val {
+            font-weight: 600;
+        }
+
+        .sum-inc {
+            list-style: none;
+            margin-top: 16px;
+        }
+
+        .sum-inc li {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: .83rem;
+            padding: 6px 0;
+            color: #ccc;
+        }
+
+        .sum-inc li span {
+            color: var(--teal);
+        }
+
+        .pay-info-box {
+            background: rgba(245, 197, 66, .07);
+            border: 1px solid rgba(245, 197, 66, .2);
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 18px;
+            font-size: .82rem;
+            line-height: 1.75;
+        }
+
+        .pay-info-box strong {
+            color: var(--gold);
+        }
+
+        /* FORM CARD */
+        .form-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px 36px;
+            width: 100%;
+            max-width: 480px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 48px rgba(124, 92, 252, .12);
+            animation: fadeUp .4s ease both;
+        }
+
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2), var(--teal));
+        }
+
+        .form-card h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.55rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .form-sub {
+            color: var(--muted);
+            font-size: .87rem;
+            margin-bottom: 26px;
+            line-height: 1.5;
+        }
+
+        /* SECTION LABEL */
+        .sec-label {
+            font-size: .72rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 22px 0 13px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* FIELDS */
+        .field {
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+            font-size: .8rem;
+            color: var(--muted);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 15px;
+            color: var(--text);
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: .92rem;
+            outline: none;
+            transition: border-color .2s, background .2s;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: var(--accent);
+            background: rgba(124, 92, 252, .06);
+        }
+
+        .field input[readonly] {
+            opacity: .55;
+            cursor: not-allowed;
+        }
+
+        .field input::placeholder,
+        .field textarea::placeholder {
+            color: var(--muted);
+        }
+
+        .field select option {
+            background: #1a1a26;
+        }
+
+        .field textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .field-hint {
+            font-size: .75rem;
+            color: var(--muted);
+            margin-top: 5px;
+            line-height: 1.4;
+        }
+
+        /* PAYMENT OPTIONS */
+        .pay-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .pay-opt {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 13px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color .2s, background .2s;
+            user-select: none;
+        }
+
+        .pay-opt:hover {
+            border-color: var(--accent);
+            background: rgba(124, 92, 252, .06);
+        }
+
+        .pay-opt.sel {
+            border-color: var(--accent);
+            background: rgba(124, 92, 252, .14);
+        }
+
+        .pay-opt .icon {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .pay-opt .lbl {
+            font-size: .82rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .pay-opt.sel .lbl {
+            color: var(--accent);
+        }
+
+        /* SUBMIT */
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 13px;
+            font-family: 'Hind Siliguri', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: transform .2s, box-shadow .2s;
+            margin-top: 6px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(124, 92, 252, .4);
+        }
+
+        .submit-btn:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ALERTS */
+        .alert {
+            padding: 11px 14px;
+            border-radius: 10px;
+            font-size: .85rem;
+            margin-bottom: 16px;
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .alert.error {
+            background: rgba(255, 92, 92, .1);
+            border: 1px solid rgba(255, 92, 92, .25);
+            color: var(--red);
+            display: flex;
+        }
+
+        .alert.success {
+            background: rgba(76, 223, 128, .1);
+            border: 1px solid rgba(76, 223, 128, .25);
+            color: var(--green);
+            display: flex;
+        }
+
+        /* ALREADY ENROLLED / SUCCESS STATES */
+        .state-box {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .state-icon {
+            font-size: 3.5rem;
+            margin-bottom: 14px;
+        }
+
+        .state-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .state-sub {
+            color: var(--muted);
+            font-size: .9rem;
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+
+        .detail-box {
+            background: rgba(0, 229, 204, .06);
+            border: 1px solid rgba(0, 229, 204, .18);
+            border-radius: 14px;
+            padding: 16px 18px;
+            text-align: left;
+            font-size: .85rem;
+            line-height: 2.1;
+            margin-bottom: 22px;
+        }
+
+        .home-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            text-decoration: none;
+            padding: 13px 30px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: .95rem;
+            transition: transform .2s;
+        }
+
+        .home-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .pending-box {
+            background: rgba(245, 197, 66, .07);
+            border: 1px solid rgba(245, 197, 66, .2);
+            border-radius: 12px;
+            padding: 16px;
+            font-size: .85rem;
+            color: var(--gold);
+            line-height: 1.7;
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 28px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: .78rem;
+        }
+
+        footer strong {
+            color: var(--accent);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media(max-width:560px) {
+            .form-card {
+                padding: 28px 20px;
+            }
+
+            .pay-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="blob-wrap">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+    </div>
+
+    <nav>
+        <a href="index.html" class="nav-brand">Orivix<span> Devs</span></a>
+        <div class="nav-right">
+            <div class="user-chip">
+                <div class="user-dot"></div><span id="navChipText">Loading...</span>
+            </div>
+            <a href="index.html" class="back-link">← Back</a>
+        </div>
+    </nav>
+
+    <div class="page">
+
+        <!-- LEFT: Course summary -->
+        <div class="summary-card">
+            <div class="sum-title">📦 Course Summary</div>
+            <div class="price-big">৳৩,০০০</div>
+            <div class="price-note">এককালীন পেমেন্ট · Lifetime Access</div>
+            <ul class="sum-inc">
+                <li><span>✓</span> ৩০টি Live Class</li>
+                <li><span>✓</span> Private Group Access</li>
+                <li><span>✓</span> সব Class Recording</li>
+                <li><span>✓</span> PDF Notes ও Resources</li>
+                <li><span>✓</span> Certificate</li>
+            </ul>
+            <div style="margin-top:18px;">
+                <div class="sum-row"><span class="sum-label">শুরুর তারিখ</span><span class="sum-val"
+                        style="color:var(--teal);">১ জুলাই ২০২৫</span></div>
+                <div class="sum-row"><span class="sum-label">Duration</span><span class="sum-val">~৩ মাস</span></div>
+                <div class="sum-row"><span class="sum-label">Language</span><span class="sum-val">বাংলা</span></div>
+                <div class="sum-row"><span class="sum-label">Level</span><span class="sum-val">Beginner</span></div>
+            </div>
+            <div class="pay-info-box">
+                💳 <strong>Payment Number:</strong><br>
+                bKash / Nagad: <strong>01939237861</strong><br>
+                Send Money করে Transaction ID দাও।
+            </div>
+        </div>
+
+        <!-- RIGHT: Enroll form -->
+        <div class="form-card" id="formCard">
+
+            <!-- ── DEFAULT: ENROLL FORM ── -->
+            <div id="enrollFormWrap">
+                <h2>🎓 Course Enrollment</h2>
+                <p class="form-sub">নিচের form পূরণ করে enrollment request পাঠাও। Admin approve করলে videos unlock হবে।
+                </p>
+
+                <div class="alert" id="enrollAlert"></div>
+
+                <div class="sec-label">Student Information</div>
+                <div class="field"><label>Student ID</label><input type="text" id="fId" readonly></div>
+                <div class="field"><label>পুরো নাম</label><input type="text" id="fName" readonly></div>
+                <div class="field"><label>Email</label><input type="email" id="fEmail" readonly></div>
+                <div class="field"><label>মোবাইল</label><input type="tel" id="fPhone" readonly></div>
+
+                <div class="sec-label">Payment Information</div>
+                <p style="font-size:.82rem;color:var(--muted);margin-bottom:14px;">Payment method বেছে নাও এবং <strong
+                        style="color:var(--text);">01939237861</strong>-এ Send Money করো।</p>
+                <div class="pay-grid">
+                    <div class="pay-opt" onclick="selPay('bKash',this)"><span class="icon">💳</span><span
+                            class="lbl">bKash</span></div>
+                    <div class="pay-opt" onclick="selPay('Nagad',this)"><span class="icon">📱</span><span
+                            class="lbl">Nagad</span></div>
+                    <div class="pay-opt" onclick="selPay('Bank',this)"><span class="icon">🏦</span><span
+                            class="lbl">Bank</span></div>
+                </div>
+                <input type="hidden" id="fPayment">
+
+                <div class="field">
+                    <label>Transaction ID / Reference *</label>
+                    <input type="text" id="fTxn" placeholder="Payment-এর পর Transaction ID দাও">
+                    <div class="field-hint">bKash/Nagad: Send Money করার পর TrxID · Bank: Reference/Tracking number
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>যেকোনো বার্তা (optional)</label>
+                    <textarea id="fNote" placeholder="কোনো প্রশ্ন বা বিশেষ তথ্য থাকলে লিখো..."></textarea>
+                </div>
+
+                <button class="submit-btn" id="submitBtn" onclick="submitEnroll()">✅ Enrollment Request পাঠাও</button>
+                <p style="text-align:center;font-size:.75rem;color:var(--muted);margin-top:12px;">Admin approve করার
+                    পরেই Videos ও Course Materials unlock হবে।</p>
+            </div>
+
+            <!-- ── ALREADY PENDING ── -->
+            <div id="pendingWrap" style="display:none;">
+                <div class="state-box">
+                    <div class="state-icon">⏳</div>
+                    <div class="state-title">Enrollment Pending</div>
+                    <p class="state-sub">তোমার enrollment request পাঠানো হয়েছে। Admin approval-এর পরে videos ও course
+                        materials unlock হবে।</p>
+                    <div class="pending-box" id="pendingDetail"></div>
+                    <br><br>
+                    <a href="index.html" class="home-btn">🏠 Home-এ ফিরো</a>
+                </div>
+            </div>
+
+            <!-- ── ALREADY APPROVED ── -->
+            <div id="approvedWrap" style="display:none;">
+                <div class="state-box">
+                    <div class="state-icon">🎉</div>
+                    <div class="state-title">তুমি ইতিমধ্যে Enrolled!</div>
+                    <p class="state-sub">তোমার enrollment approve হয়েছে। এখন Index page-এ গিয়ে course videos দেখতে
+                        পারবে।</p>
+                    <a href="index.html" class="home-btn">📹 Videos দেখো</a>
+                </div>
+            </div>
+
+            <!-- ── SUCCESS (just submitted) ── -->
+            <div id="successWrap" style="display:none;">
+                <div class="state-box">
+                    <div class="state-icon">🎉</div>
+                    <div class="state-title">Request Submitted!</div>
+                    <p class="state-sub">তোমার enrollment request সফলভাবে পাঠানো হয়েছে। Admin শীঘ্রই review করবে।</p>
+                    <div class="detail-box" id="successDetail"></div>
+                    <a href="index.html" class="home-btn">🏠 Home-এ ফিরো</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>© 2025 <strong>Orivix Devs</strong> · সর্বস্বত্ব সংরক্ষিত</footer>
+
+    <script>
+        const STORE_KEY = 'orivix_students', ENROLL_KEY = 'orivix_enrollments', SESSION_KEY = 'orivix_session';
+        function getSession() { try { return JSON.parse(sessionStorage.getItem(SESSION_KEY)); } catch { return null; } }
+        function getEnrollments() { try { return JSON.parse(localStorage.getItem(ENROLL_KEY)) || []; } catch { return []; } }
+        function saveEnrollments(a) { localStorage.setItem(ENROLL_KEY, JSON.stringify(a)); }
+
+        // ── AUTH GUARD ──
+        const sess = getSession();
+        if (!sess || sess.type !== 'student') {
+            window.location.href = 'login.html';
+        }
+        const user = sess.data;
+
+        // ── FILL NAV ──
+        document.getElementById('navChipText').textContent = user.name.split(' ')[0] + ' · ' + user.id;
+
+        // ── CHECK EXISTING ENROLLMENT ──
+        const enrollments = getEnrollments();
+        const existing = enrollments.find(e => e.studentId === user.id);
+
+        if (existing) {
+            document.getElementById('enrollFormWrap').style.display = 'none';
+            if (existing.status === 'approved') {
+                document.getElementById('approvedWrap').style.display = 'block';
+            } else if (existing.status === 'pending') {
+                document.getElementById('pendingWrap').style.display = 'block';
+                document.getElementById('pendingDetail').innerHTML =
+                    `📋 <b>Student ID:</b> ${existing.studentId}<br>
+       💳 <b>Payment:</b> ${existing.payment}<br>
+       🧾 <b>Transaction ID:</b> ${existing.txn}<br>
+       📅 <b>Submitted:</b> ${existing.date}`;
+            } else if (existing.status === 'rejected') {
+                // Allow re-enrollment after rejection — show form pre-filled
+                fillForm();
+                showAlert('⚠️ তোমার আগের enrollment reject হয়েছিলো। নতুন করে submit করো।', 'error');
+            }
+        } else {
+            fillForm();
+        }
+
+        function fillForm() {
+            document.getElementById('fId').value = user.id;
+            document.getElementById('fName').value = user.name;
+            document.getElementById('fEmail').value = user.email;
+            document.getElementById('fPhone').value = user.phone;
+        }
+
+        // ── PAYMENT SELECTION ──
+        let selPayment = '';
+        function selPay(method, el) {
+            selPayment = method;
+            document.getElementById('fPayment').value = method;
+            document.querySelectorAll('.pay-opt').forEach(o => o.classList.remove('sel'));
+            el.classList.add('sel');
+        }
+
+        // ── ALERT ──
+        function showAlert(msg, type) {
+            const el = document.getElementById('enrollAlert');
+            el.textContent = msg; el.className = 'alert ' + type;
+            el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // ── SUBMIT ──
+        function submitEnroll() {
+            const txn = document.getElementById('fTxn').value.trim();
+            const note = document.getElementById('fNote').value.trim();
+            if (!selPayment) return showAlert('⚠️ Payment method বেছে নাও (bKash / Nagad / Bank)।', 'error');
+            if (!txn) return showAlert('⚠️ Transaction ID বা Reference number দাও।', 'error');
+            if (txn.length < 4) return showAlert('⚠️ সঠিক Transaction ID দাও।', 'error');
+
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true; btn.textContent = 'Submitting...';
+
+            const now = new Date().toLocaleDateString('bn-BD');
+            const enrollment = {
+                studentId: user.id, studentName: user.name,
+                email: user.email, phone: user.phone,
+                payment: selPayment, txn, note, date: now, status: 'pending'
+            };
+
+            // Remove any old rejected enrollment for this student
+            const arr = getEnrollments().filter(e => e.studentId !== user.id);
+            arr.push(enrollment);
+            saveEnrollments(arr);
+
+            // Show success
+            document.getElementById('enrollFormWrap').style.display = 'none';
+            document.getElementById('successWrap').style.display = 'block';
+            document.getElementById('successDetail').innerHTML =
+                `👤 <b>নাম:</b> ${user.name}<br>
+     🆔 <b>Student ID:</b> ${user.id}<br>
+     📧 <b>Email:</b> ${user.email}<br>
+     💳 <b>Payment:</b> ${selPayment}<br>
+     🧾 <b>Transaction ID:</b> ${txn}<br>
+     ${note ? `💬 <b>Note:</b> ${note}<br>` : ''}
+     📅 <b>Date:</b> ${now}<br>
+     ⏳ <b>Status:</b> Pending Admin Review`;
+        }
+    </script>
+</body>
+
+</html>
