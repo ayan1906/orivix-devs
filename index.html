@@ -49,7 +49,7 @@
             position: absolute;
             border-radius: 50%;
             filter: blur(80px);
-            opacity: 0.15;
+            opacity: .15;
             animation: bm 12s ease-in-out infinite alternate;
         }
 
@@ -95,7 +95,7 @@
             position: sticky;
             top: 0;
             z-index: 200;
-            background: rgba(10, 10, 15, 0.88);
+            background: rgba(10, 10, 15, .88);
             backdrop-filter: blur(18px);
             border-bottom: 1px solid var(--border);
             padding: 0 28px;
@@ -123,7 +123,6 @@
             gap: 12px;
         }
 
-        /* Guest buttons */
         .nav-guest {
             display: flex;
             gap: 10px;
@@ -145,7 +144,7 @@
 
         .btn-ghost:hover {
             border-color: var(--accent);
-            background: rgba(124, 92, 252, 0.08);
+            background: rgba(124, 92, 252, .08);
         }
 
         .btn-nav {
@@ -164,7 +163,7 @@
 
         .btn-nav:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 22px rgba(124, 92, 252, 0.4);
+            box-shadow: 0 8px 22px rgba(124, 92, 252, .4);
         }
 
         /* Profile chip */
@@ -172,7 +171,7 @@
             display: none;
             align-items: center;
             gap: 10px;
-            background: rgba(124, 92, 252, 0.1);
+            background: rgba(124, 92, 252, .1);
             border: 1px solid var(--border);
             border-radius: 50px;
             padding: 5px 14px 5px 5px;
@@ -182,8 +181,8 @@
         }
 
         .profile-chip:hover {
-            border-color: rgba(124, 92, 252, 0.45);
-            background: rgba(124, 92, 252, 0.18);
+            border-color: rgba(124, 92, 252, .45);
+            background: rgba(124, 92, 252, .18);
         }
 
         .profile-chip.visible {
@@ -212,7 +211,6 @@
         .chip-name {
             font-size: .82rem;
             font-weight: 600;
-            color: var(--text);
             max-width: 110px;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -247,7 +245,7 @@
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 8px;
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, .55);
             z-index: 300;
         }
 
@@ -290,10 +288,12 @@
             font-size: .87rem;
             font-weight: 500;
             transition: background .15s;
+            text-decoration: none;
+            color: var(--text);
         }
 
         .dd-item:hover {
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, .06);
         }
 
         .dd-item.danger {
@@ -301,7 +301,7 @@
         }
 
         .dd-item.danger:hover {
-            background: rgba(255, 92, 92, 0.1);
+            background: rgba(255, 92, 92, .1);
         }
 
         .dd-divider {
@@ -310,10 +310,37 @@
             margin: 4px 0;
         }
 
+        .enroll-status-pill {
+            font-size: .72rem;
+            padding: 2px 9px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 5px;
+            display: inline-block;
+        }
+
+        .pill-enrolled {
+            background: rgba(76, 223, 128, .15);
+            color: var(--green);
+            border: 1px solid rgba(76, 223, 128, .3);
+        }
+
+        .pill-pending {
+            background: rgba(245, 197, 66, .15);
+            color: var(--gold);
+            border: 1px solid rgba(245, 197, 66, .3);
+        }
+
+        .pill-none {
+            background: rgba(255, 92, 92, .1);
+            color: var(--red);
+            border: 1px solid rgba(255, 92, 92, .25);
+        }
+
         /* Admin badge */
         .admin-badge {
-            background: rgba(245, 197, 66, 0.15);
-            border: 1px solid rgba(245, 197, 66, 0.3);
+            background: rgba(245, 197, 66, .15);
+            border: 1px solid rgba(245, 197, 66, .3);
             color: var(--gold);
             padding: 7px 18px;
             border-radius: 50px;
@@ -332,7 +359,7 @@
 
         .badge {
             display: inline-block;
-            background: rgba(124, 92, 252, 0.12);
+            background: rgba(124, 92, 252, .12);
             border: 1px solid var(--border);
             color: var(--accent);
             padding: 6px 18px;
@@ -407,7 +434,83 @@
 
         .hero-cta:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 32px rgba(124, 92, 252, 0.45);
+            box-shadow: 0 12px 32px rgba(124, 92, 252, .45);
+        }
+
+        /* ── WELCOME BANNER ── */
+        .dash-banner {
+            position: relative;
+            z-index: 1;
+            max-width: 860px;
+            margin: 0 auto 30px;
+            padding: 0 20px;
+            display: none;
+        }
+
+        .dash-inner {
+            background: linear-gradient(135deg, rgba(124, 92, 252, .12), rgba(200, 80, 240, .08));
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 22px 28px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .dash-av {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .dash-info {
+            flex: 1;
+        }
+
+        .dash-hi {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .dash-meta {
+            font-size: .8rem;
+            color: var(--muted);
+            margin-top: 3px;
+        }
+
+        .dash-id-pill {
+            background: rgba(245, 197, 66, .12);
+            border: 1px solid rgba(245, 197, 66, .25);
+            color: var(--gold);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .82rem;
+            font-weight: 700;
+        }
+
+        .enroll-banner-btn {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            border: none;
+            padding: 9px 20px;
+            border-radius: 50px;
+            font-family: 'Hind Siliguri', sans-serif;
+            font-weight: 700;
+            font-size: .85rem;
+            cursor: pointer;
+            text-decoration: none;
+            white-space: nowrap;
         }
 
         /* ── SECTIONS ── */
@@ -443,7 +546,6 @@
             margin: 12px auto 0;
         }
 
-        /* features */
         .features {
             position: relative;
             z-index: 1;
@@ -507,7 +609,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 8px 48px rgba(124, 92, 252, 0.15);
+            box-shadow: 0 8px 48px rgba(124, 92, 252, .15);
         }
 
         .price-card::before {
@@ -540,8 +642,8 @@
         }
 
         .start-badge {
-            background: rgba(0, 229, 204, 0.1);
-            border: 1px solid rgba(0, 229, 204, 0.25);
+            background: rgba(0, 229, 204, .1);
+            border: 1px solid rgba(0, 229, 204, .25);
             color: var(--teal);
             padding: 9px 18px;
             border-radius: 10px;
@@ -560,7 +662,7 @@
         .price-list li {
             padding: 8px 0;
             font-size: .88rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
             display: flex;
             gap: 10px;
             align-items: center;
@@ -586,13 +688,36 @@
             font-weight: 700;
             font-size: 1.05rem;
             cursor: pointer;
-            transition: transform .2s, box-shadow .2s;
             text-decoration: none;
+            transition: transform .2s, box-shadow .2s;
+            text-align: center;
         }
 
         .enroll-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 32px rgba(124, 92, 252, 0.45);
+            box-shadow: 0 12px 32px rgba(124, 92, 252, .45);
+        }
+
+        .enrolled-state {
+            background: rgba(76, 223, 128, .08);
+            border: 1px solid rgba(76, 223, 128, .25);
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+            font-weight: 600;
+            font-size: .95rem;
+            color: var(--green);
+        }
+
+        .pending-state {
+            background: rgba(245, 197, 66, .08);
+            border: 1px solid rgba(245, 197, 66, .25);
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+            font-weight: 600;
+            font-size: .95rem;
+            color: var(--gold);
         }
 
         /* modules */
@@ -614,7 +739,7 @@
         }
 
         .mod-card:hover {
-            border-color: rgba(124, 92, 252, 0.4);
+            border-color: rgba(124, 92, 252, .4);
         }
 
         .mod-header {
@@ -655,7 +780,7 @@
         }
 
         .mod-cls {
-            background: rgba(124, 92, 252, 0.1);
+            background: rgba(124, 92, 252, .1);
             color: var(--accent);
             padding: 3px 11px;
             border-radius: 20px;
@@ -695,7 +820,7 @@
             padding: 6px 0;
             font-size: .88rem;
             color: #ccc;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
             display: flex;
             align-items: center;
             gap: 9px;
@@ -715,53 +840,176 @@
         }
 
         .c1 {
-            background: rgba(124, 92, 252, 0.18);
+            background: rgba(124, 92, 252, .18);
             color: #b08fff;
         }
 
         .c2 {
-            background: rgba(0, 229, 204, 0.13);
+            background: rgba(0, 229, 204, .13);
             color: var(--teal);
         }
 
         .c3 {
-            background: rgba(245, 197, 66, 0.13);
+            background: rgba(245, 197, 66, .13);
             color: var(--gold);
         }
 
         .c4 {
-            background: rgba(200, 80, 240, 0.13);
+            background: rgba(200, 80, 240, .13);
             color: #e080ff;
         }
 
         .c5 {
-            background: rgba(255, 100, 100, 0.13);
+            background: rgba(255, 100, 100, .13);
             color: #ff8080;
         }
 
         .c6 {
-            background: rgba(80, 200, 120, 0.13);
+            background: rgba(80, 200, 120, .13);
             color: #60d080;
         }
 
         .c7 {
-            background: rgba(80, 160, 255, 0.13);
+            background: rgba(80, 160, 255, .13);
             color: #60aaff;
         }
 
         .c8 {
-            background: rgba(255, 160, 60, 0.13);
+            background: rgba(255, 160, 60, .13);
             color: #ffaa50;
         }
 
         .c9 {
-            background: rgba(0, 229, 204, 0.13);
+            background: rgba(0, 229, 204, .13);
             color: var(--teal);
         }
 
         .c10 {
-            background: rgba(245, 197, 66, 0.18);
+            background: rgba(245, 197, 66, .18);
             color: var(--gold);
+        }
+
+        /* ── VIDEOS SECTION ── */
+        .videos-section {
+            position: relative;
+            z-index: 1;
+            max-width: 960px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+            display: none;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .video-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: border-color .2s, transform .2s;
+        }
+
+        .video-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .video-thumb {
+            position: relative;
+            background: #111;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .video-thumb iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-play {
+            position: absolute;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .video-play:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 24px rgba(124, 92, 252, .5);
+        }
+
+        .video-info {
+            padding: 14px 16px;
+        }
+
+        .video-info h4 {
+            font-size: .92rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .video-info p {
+            font-size: .78rem;
+            color: var(--muted);
+        }
+
+        .video-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .vid-tag {
+            background: rgba(124, 92, 252, .1);
+            color: var(--accent);
+            padding: 2px 9px;
+            border-radius: 20px;
+            font-size: .72rem;
+            font-weight: 600;
+        }
+
+        .locked-overlay {
+            position: relative;
+            z-index: 1;
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .lock-icon {
+            font-size: 3.5rem;
+            margin-bottom: 16px;
+        }
+
+        .lock-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .lock-sub {
+            color: var(--muted);
+            font-size: .95rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
         }
 
         /* instructor */
@@ -808,14 +1056,15 @@
             font-size: 2.5rem;
             font-weight: 700;
             color: #fff;
-            border: 3px solid rgba(124, 92, 252, 0.3);
-            box-shadow: 0 0 30px rgba(124, 92, 252, 0.25);
+            border: 3px solid rgba(124, 92, 252, .3);
+            box-shadow: 0 0 30px rgba(124, 92, 252, .25);
+            object-fit: cover;
         }
 
         .inst-role {
             display: inline-block;
-            background: rgba(0, 229, 204, 0.1);
-            border: 1px solid rgba(0, 229, 204, 0.25);
+            background: rgba(0, 229, 204, .1);
+            border: 1px solid rgba(0, 229, 204, .25);
             color: var(--teal);
             padding: 4px 13px;
             border-radius: 20px;
@@ -878,7 +1127,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, .05);
             border: 1px solid var(--border);
             color: var(--text);
             text-decoration: none;
@@ -891,7 +1140,7 @@
 
         .slink:hover {
             border-color: var(--accent);
-            background: rgba(124, 92, 252, 0.1);
+            background: rgba(124, 92, 252, .1);
             transform: translateY(-2px);
         }
 
@@ -963,19 +1212,56 @@
             display: block;
         }
 
-        /* Admin panel */
+        /* ── ADMIN PANEL ── */
         .admin-panel-section {
             position: relative;
             z-index: 1;
-            max-width: 860px;
+            max-width: 900px;
             margin: 0 auto 80px;
             padding: 0 20px;
             display: none;
         }
 
+        .admin-tabs {
+            display: flex;
+            background: rgba(255, 255, 255, .04);
+            border-radius: 12px;
+            padding: 4px;
+            margin-bottom: 24px;
+            gap: 4px;
+        }
+
+        .atab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: .85rem;
+            color: var(--muted);
+            transition: all .25s;
+            border: none;
+            background: none;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        .atab.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+        }
+
+        .admin-panel {
+            display: none;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
         .admin-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 700;
             margin-bottom: 16px;
             display: flex;
@@ -983,71 +1269,148 @@
             gap: 8px;
         }
 
-        .admin-title .badge-gold {
-            background: rgba(245, 197, 66, 0.15);
+        .badge-gold {
+            background: rgba(245, 197, 66, .15);
             color: var(--gold);
             padding: 3px 10px;
             border-radius: 6px;
             font-size: .73rem;
         }
 
+        .badge-teal {
+            background: rgba(0, 229, 204, .12);
+            color: var(--teal);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: .73rem;
+        }
+
         .student-list {
-            max-height: 400px;
+            max-height: 440px;
             overflow-y: auto;
         }
 
         .student-row {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, .03);
             border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 12px 16px;
+            border-radius: 12px;
+            padding: 14px 16px;
             margin-bottom: 8px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 10px;
+            transition: border-color .2s;
+        }
+
+        .student-row:hover {
+            border-color: rgba(124, 92, 252, .3);
         }
 
         .s-name {
             font-weight: 600;
-            font-size: .88rem;
+            font-size: .9rem;
         }
 
         .s-meta {
-            font-size: .76rem;
+            font-size: .75rem;
             color: var(--muted);
+            margin-top: 2px;
         }
 
         .s-id {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: .83rem;
+            font-size: .85rem;
             color: var(--gold);
             font-weight: 700;
         }
 
+        .row-actions {
+            display: flex;
+            gap: 7px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
         .del-btn {
-            background: rgba(255, 92, 92, 0.1);
-            border: 1px solid rgba(255, 92, 92, 0.2);
+            background: rgba(255, 92, 92, .1);
+            border: 1px solid rgba(255, 92, 92, .2);
             color: var(--red);
-            padding: 5px 10px;
+            padding: 5px 11px;
             border-radius: 7px;
             cursor: pointer;
             font-size: .73rem;
             transition: background .2s;
+            font-family: 'Hind Siliguri', sans-serif;
         }
 
         .del-btn:hover {
-            background: rgba(255, 92, 92, 0.25);
+            background: rgba(255, 92, 92, .25);
+        }
+
+        .approve-btn {
+            background: rgba(76, 223, 128, .1);
+            border: 1px solid rgba(76, 223, 128, .25);
+            color: var(--green);
+            padding: 5px 11px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: .73rem;
+            transition: background .2s;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        .approve-btn:hover {
+            background: rgba(76, 223, 128, .25);
+        }
+
+        .reject-btn {
+            background: rgba(255, 92, 92, .08);
+            border: 1px solid rgba(255, 92, 92, .2);
+            color: var(--red);
+            padding: 5px 11px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: .73rem;
+            transition: background .2s;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        .reject-btn:hover {
+            background: rgba(255, 92, 92, .2);
+        }
+
+        .status-pill {
+            font-size: .72rem;
+            padding: 3px 9px;
+            border-radius: 20px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .sp-enrolled {
+            background: rgba(76, 223, 128, .15);
+            color: var(--green);
+        }
+
+        .sp-pending {
+            background: rgba(245, 197, 66, .15);
+            color: var(--gold);
+        }
+
+        .sp-rejected {
+            background: rgba(255, 92, 92, .12);
+            color: var(--red);
         }
 
         .export-btn {
             width: 100%;
-            background: rgba(0, 229, 204, 0.08);
-            border: 1px solid rgba(0, 229, 204, 0.22);
+            background: rgba(0, 229, 204, .07);
+            border: 1px solid rgba(0, 229, 204, .2);
             color: var(--teal);
             padding: 12px;
             border-radius: 12px;
-            margin-top: 12px;
+            margin-top: 14px;
             font-family: 'Hind Siliguri', sans-serif;
             font-weight: 600;
             font-size: .88rem;
@@ -1056,76 +1419,48 @@
         }
 
         .export-btn:hover {
-            background: rgba(0, 229, 204, 0.18);
+            background: rgba(0, 229, 204, .16);
         }
 
         .empty {
             text-align: center;
             color: var(--muted);
-            padding: 24px;
+            padding: 32px;
             font-size: .88rem;
         }
 
-        /* dashboard inline */
-        .dash-banner {
-            position: relative;
-            z-index: 1;
-            max-width: 860px;
-            margin: 0 auto 30px;
-            padding: 0 20px;
-            display: none;
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 22px;
         }
 
-        .dash-inner {
-            background: linear-gradient(135deg, rgba(124, 92, 252, 0.12), rgba(200, 80, 240, 0.08));
+        .astat {
+            background: rgba(255, 255, 255, .03);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 22px 28px;
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            flex-wrap: wrap;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
         }
 
-        .dash-av {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), var(--accent2));
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .astat-num {
             font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
             font-weight: 700;
-            font-size: 1.3rem;
-            flex-shrink: 0;
+            color: var(--gold);
         }
 
-        .dash-info {
-            flex: 1;
-        }
-
-        .dash-hi {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-        }
-
-        .dash-meta {
-            font-size: .8rem;
+        .astat-lbl {
+            font-size: .75rem;
             color: var(--muted);
             margin-top: 3px;
         }
 
-        .dash-id-pill {
-            background: rgba(245, 197, 66, 0.12);
-            border: 1px solid rgba(245, 197, 66, 0.25);
-            color: var(--gold);
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: .82rem;
-            font-weight: 700;
+        .enroll-detail {
+            font-size: .73rem;
+            color: var(--muted);
+            margin-top: 3px;
         }
 
         footer {
@@ -1181,16 +1516,13 @@
     <nav>
         <div class="nav-brand">Orivix<span> Devs</span></div>
         <div class="nav-right">
-            <!-- guest -->
             <div class="nav-guest" id="navGuest">
                 <a class="btn-ghost" href="login.html">লগইন</a>
                 <a class="btn-nav" href="login.html">রেজিস্ট্রেশন</a>
             </div>
-            <!-- admin badge -->
             <div id="navAdmin" style="display:none">
                 <div class="admin-badge" onclick="scrollToAdmin()">📊 Admin Panel</div>
             </div>
-            <!-- profile chip -->
             <div class="profile-chip" id="profileChip" onclick="toggleDropdown(event)">
                 <div class="chip-avatar" id="chipAvatar"></div>
                 <div class="chip-info">
@@ -1205,8 +1537,11 @@
                         <div class="dd-id" id="ddId"></div>
                         <div class="dd-sub" id="ddPhone"></div>
                         <div class="dd-sub" id="ddJoin"></div>
+                        <div id="ddEnrollStatus"></div>
                     </div>
                     <div class="dd-item" onclick="copyIdDD()">📋 &nbsp;Student ID কপি</div>
+                    <div class="dd-divider"></div>
+                    <a class="dd-item" href="enroll.html" id="ddEnrollLink">📝 &nbsp;Course Enroll করো</a>
                     <div class="dd-divider"></div>
                     <div class="dd-item danger" onclick="logout()">🚪 &nbsp;লগআউট</div>
                 </div>
@@ -1214,7 +1549,7 @@
         </div>
     </nav>
 
-    <!-- ══ WELCOME BANNER (logged in) ══ -->
+    <!-- ══ WELCOME BANNER ══ -->
     <div class="dash-banner" id="dashBanner">
         <div class="dash-inner">
             <div class="dash-av" id="bannerAv"></div>
@@ -1223,6 +1558,7 @@
                 <div class="dash-meta" id="bannerMeta"></div>
             </div>
             <div class="dash-id-pill" id="bannerIdPill"></div>
+            <a href="enroll.html" class="enroll-banner-btn" id="bannerEnrollBtn">📝 Enroll করো</a>
         </div>
     </div>
 
@@ -1312,8 +1648,72 @@
                 <li><span>✓</span> PDF Notes ও Resources</li>
                 <li><span>✓</span> Certificate of Completion</li>
             </ul>
-            <a href="enroll.html" class="enroll-btn" id="enrollBtn">👉 এখনই Enroll করো</a>
+            <div id="enrollCtaArea">
+                <a href="login.html?redirect=enroll" class="enroll-btn" id="enrollBtn">👉 এখনই Enroll করো</a>
+            </div>
             <p style="margin-top:12px;font-size:.76rem;color:var(--muted);">bKash · Nagad · Bank Transfer গ্রহণযোগ্য</p>
+        </div>
+    </div>
+
+    <!-- ══ COURSE VIDEOS (enrolled only) ══ -->
+    <div class="videos-section" id="videosSection">
+        <div class="sec-title">
+            <h2>📹 Course <span>Videos</span></h2>
+            <p>Enrolled students-দের জন্য exclusive class recordings</p>
+            <div class="underline-bar"></div>
+        </div>
+        <!-- Locked overlay — shown when logged in but NOT enrolled -->
+        <div class="locked-overlay" id="lockedOverlay" style="display:none;">
+            <div class="lock-icon">🔒</div>
+            <div class="lock-title">Videos Locked</div>
+            <p class="lock-sub">Course videos দেখতে হলে আগে enroll করো এবং admin approval এর জন্য অপেক্ষা করো।</p>
+            <a href="enroll.html" class="enroll-btn" style="display:inline-block;width:auto;padding:14px 32px;">📝
+                Enroll করো</a>
+        </div>
+        <!-- Pending overlay -->
+        <div class="locked-overlay" id="pendingOverlay" style="display:none;">
+            <div class="lock-icon">⏳</div>
+            <div class="lock-title">Approval Pending</div>
+            <p class="lock-sub">তোমার enrollment request পাঠানো হয়েছে। Admin approval-এর পরে videos unlock হবে।</p>
+            <div
+                style="background:rgba(245,197,66,.08);border:1px solid rgba(245,197,66,.2);border-radius:12px;padding:16px;font-size:.85rem;color:var(--gold);">
+                ⏳ Pending review...</div>
+        </div>
+        <!-- Actual videos grid -->
+        <div class="videos-grid" id="videosGrid" style="display:none;">
+            <div class="video-card">
+                <div class="video-thumb">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>Module 01 — Digital Marketing কী?</h4>
+                    <p>Foundation ও Overview — ক্লাস ১</p>
+                    <div class="video-meta"><span class="vid-tag">Module 1</span><span class="vid-tag">৪৫ মিনিট</span>
+                    </div>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-thumb">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>Module 02 — Website Basics</h4>
+                    <p>Domain, Hosting ও WordPress — ক্লাস ১</p>
+                    <div class="video-meta"><span class="vid-tag">Module 2</span><span class="vid-tag">৫০ মিনিট</span>
+                    </div>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-thumb">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>Module 03 — SEO Basics</h4>
+                    <p>Keyword Research ও On-Page SEO — ক্লাস ১</p>
+                    <div class="video-meta"><span class="vid-tag">Module 3</span><span class="vid-tag">৫৫ মিনিট</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1372,10 +1772,9 @@
             </div>
             <div class="mod-body">
                 <ul>
-                    <li>Keyword Research — Google Keyword Planner</li>
-                    <li>On-Page SEO — Title, Meta, Heading</li>
-                    <li>Off-Page SEO — Backlink Basics</li>
-                    <li>Technical SEO — Speed, Mobile, Sitemap</li>
+                    <li>Keyword Research</li>
+                    <li>On-Page ও Off-Page SEO</li>
+                    <li>Technical SEO</li>
                 </ul>
             </div>
         </div>
@@ -1383,17 +1782,17 @@
             <div class="mod-header">
                 <div class="mod-num c4">০৪</div>
                 <div class="mod-info">
-                    <h3>Facebook Marketing (Organic)</h3>
-                    <p>Page ও Content Strategy</p>
+                    <h3>Facebook Marketing</h3>
+                    <p>Organic Growth</p>
                 </div>
                 <div class="mod-cls">৩ Class</div>
                 <div class="mod-arrow">▾</div>
             </div>
             <div class="mod-body">
                 <ul>
-                    <li>Facebook Page setup ও optimize</li>
-                    <li>Content Calendar তৈরি</li>
-                    <li>Facebook Algorithm বোঝা</li>
+                    <li>Page setup ও optimize</li>
+                    <li>Content Calendar</li>
+                    <li>Facebook Algorithm</li>
                 </ul>
             </div>
         </div>
@@ -1409,10 +1808,9 @@
             </div>
             <div class="mod-body">
                 <ul>
-                    <li>Meta Ads Manager setup</li>
-                    <li>Audience Targeting — Custom, Lookalike</li>
-                    <li>Budget optimize ও A/B Testing</li>
-                    <li>Retargeting Campaign</li>
+                    <li>Ads Manager setup</li>
+                    <li>Audience Targeting</li>
+                    <li>Budget ও A/B Testing</li>
                 </ul>
             </div>
         </div>
@@ -1420,17 +1818,17 @@
             <div class="mod-header">
                 <div class="mod-num c6">০৬</div>
                 <div class="mod-info">
-                    <h3>Content Marketing & Copywriting</h3>
-                    <p>লেখা দিয়ে বিক্রি করা</p>
+                    <h3>Content & Copywriting</h3>
+                    <p>লেখা দিয়ে বিক্রি</p>
                 </div>
                 <div class="mod-cls">৩ Class</div>
                 <div class="mod-arrow">▾</div>
             </div>
             <div class="mod-body">
                 <ul>
-                    <li>Blog ও Article লেখার formula</li>
-                    <li>Caption, Hook ও CTA লেখা</li>
-                    <li>Canva দিয়ে Graphics তৈরি</li>
+                    <li>Blog ও Article লেখা</li>
+                    <li>Caption, Hook ও CTA</li>
+                    <li>Canva Basics</li>
                 </ul>
             </div>
         </div>
@@ -1438,8 +1836,8 @@
             <div class="mod-header">
                 <div class="mod-num c7">০৭</div>
                 <div class="mod-info">
-                    <h3>Google Ads Basics</h3>
-                    <p>Search ও Display Advertising</p>
+                    <h3>Google Ads</h3>
+                    <p>Search ও Display</p>
                 </div>
                 <div class="mod-cls">৩ Class</div>
                 <div class="mod-arrow">▾</div>
@@ -1447,8 +1845,8 @@
             <div class="mod-body">
                 <ul>
                     <li>Google Ads Account setup</li>
-                    <li>Search Ads — Keyword, Bidding</li>
-                    <li>Quality Score ও Conversion Tracking</li>
+                    <li>Search ও Display Ads</li>
+                    <li>Conversion Tracking</li>
                 </ul>
             </div>
         </div>
@@ -1457,16 +1855,16 @@
                 <div class="mod-num c8">০৮</div>
                 <div class="mod-info">
                     <h3>Email Marketing</h3>
-                    <p>List Building ও Automation</p>
+                    <p>List ও Automation</p>
                 </div>
                 <div class="mod-cls">৩ Class</div>
                 <div class="mod-arrow">▾</div>
             </div>
             <div class="mod-body">
                 <ul>
-                    <li>Mailchimp Account ও List তৈরি</li>
-                    <li>Email Campaign design</li>
-                    <li>Automation ও Drip Campaign</li>
+                    <li>Mailchimp setup</li>
+                    <li>Campaign design</li>
+                    <li>Automation ও Drip</li>
                 </ul>
             </div>
         </div>
@@ -1475,16 +1873,16 @@
                 <div class="mod-num c9">০৯</div>
                 <div class="mod-info">
                     <h3>Analytics & Data</h3>
-                    <p>Data দিয়ে সিদ্ধান্ত নেওয়া</p>
+                    <p>Data দিয়ে সিদ্ধান্ত</p>
                 </div>
                 <div class="mod-cls">৩ Class</div>
                 <div class="mod-arrow">▾</div>
             </div>
             <div class="mod-body">
                 <ul>
-                    <li>Google Analytics 4 (GA4) setup</li>
-                    <li>Traffic source, Bounce rate, Conversion</li>
-                    <li>Monthly Report তৈরি</li>
+                    <li>Google Analytics 4</li>
+                    <li>Meta Insights</li>
+                    <li>Monthly Report</li>
                 </ul>
             </div>
         </div>
@@ -1500,10 +1898,9 @@
             </div>
             <div class="mod-body">
                 <ul>
-                    <li>Fiverr Account ও Gig তৈরি</li>
-                    <li>Upwork Profile ও Proposal লেখা</li>
+                    <li>Fiverr ও Upwork Profile</li>
                     <li>Portfolio তৈরি</li>
-                    <li>নিজের Agency খোলার রোডম্যাপ</li>
+                    <li>Agency খোলার রোডম্যাপ</li>
                 </ul>
             </div>
         </div>
@@ -1517,7 +1914,8 @@
     </div>
     <div class="instructor-wrap">
         <div class="instructor-card">
-            <img src="./image.png" class="inst-avatar" alt="">
+            <img src="./image.png" class="inst-avatar" alt="Mahmudul Hasan"
+                onerror="this.outerHTML='<div class=\'inst-avatar\'>MH</div>'">
             <div>
                 <div class="inst-role">✦ Lead Instructor</div>
                 <div class="inst-name">MD Mahmudul Hasan</div>
@@ -1554,18 +1952,16 @@
     <div class="faq-wrap">
         <div class="faq-item" onclick="toggleFaq(this)">
             <div class="faq-q">আমি একদম নতুন, পারবো কি? <span>+</span></div>
-            <div class="faq-a">হ্যাঁ! এই course একদম beginners-দের কথা মাথায় রেখে তৈরি। কোনো পূর্ব অভিজ্ঞতা ছাড়াই শুরু
-                করা যাবে।</div>
+            <div class="faq-a">হ্যাঁ! একদম beginners-দের কথা মাথায় রেখে তৈরি। কোনো পূর্ব অভিজ্ঞতা ছাড়াই শুরু করা যাবে।
+            </div>
         </div>
         <div class="faq-item" onclick="toggleFaq(this)">
             <div class="faq-q">Class কখন হবে? <span>+</span></div>
-            <div class="faq-a">সপ্তাহে ৩টি করে class হবে। সময়সূচী enrollment-এর পরে জানানো হবে। সব class record করা
-                হবে।</div>
+            <div class="faq-a">সপ্তাহে ৩টি করে class হবে। সব class record করা হবে।</div>
         </div>
         <div class="faq-item" onclick="toggleFaq(this)">
             <div class="faq-q">Payment কীভাবে করবো? <span>+</span></div>
-            <div class="faq-a">bKash, Nagad বা Bank Transfer-এ payment করা যাবে। Screenshot পাঠালেই confirm হয়ে যাবে।
-            </div>
+            <div class="faq-a">bKash, Nagad বা Bank Transfer-এ payment করা যাবে। Screenshot পাঠালেই confirm।</div>
         </div>
         <div class="faq-item" onclick="toggleFaq(this)">
             <div class="faq-q">Course শেষে কি সত্যিই income করা যাবে? <span>+</span></div>
@@ -1576,9 +1972,46 @@
     <!-- ══ ADMIN PANEL ══ -->
     <div class="admin-panel-section" id="adminSection">
         <div style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;">
-            <div class="admin-title">📊 সকল Students <span class="badge-gold">ADMIN</span></div>
-            <div id="studentList" class="student-list"></div>
-            <button class="export-btn" onclick="exportCSV()">⬇️ CSV Export করুন</button>
+            <div
+                style="margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+                <div style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;">📊 Admin Dashboard
+                    <span class="badge-gold">ADMIN</span>
+                </div>
+            </div>
+            <!-- Stats -->
+            <div class="admin-stats">
+                <div class="astat">
+                    <div class="astat-num" id="statTotal">0</div>
+                    <div class="astat-lbl">মোট Students</div>
+                </div>
+                <div class="astat">
+                    <div class="astat-num" style="color:var(--gold);" id="statPending">0</div>
+                    <div class="astat-lbl">Pending Enrollments</div>
+                </div>
+                <div class="astat">
+                    <div class="astat-num" style="color:var(--green);" id="statApproved">0</div>
+                    <div class="astat-lbl">Approved</div>
+                </div>
+            </div>
+            <!-- Admin tabs -->
+            <div class="admin-tabs">
+                <button class="atab active" onclick="switchAdminTab('students')">👥 সকল Students</button>
+                <button class="atab" onclick="switchAdminTab('enrollments')">📝 Enrollments</button>
+            </div>
+            <!-- Students tab -->
+            <div class="admin-panel active" id="tabStudents">
+                <div class="admin-title">👥 Registered Students <span class="badge-gold" id="countStudents">0</span>
+                </div>
+                <div id="studentList" class="student-list"></div>
+                <button class="export-btn" onclick="exportCSV('students')">⬇️ Students CSV Export</button>
+            </div>
+            <!-- Enrollments tab -->
+            <div class="admin-panel" id="tabEnrollments">
+                <div class="admin-title">📝 Enrollment Requests <span class="badge-teal" id="countEnrollments">0</span>
+                </div>
+                <div id="enrollList" class="student-list"></div>
+                <button class="export-btn" onclick="exportCSV('enrollments')">⬇️ Enrollments CSV Export</button>
+            </div>
         </div>
     </div>
 
@@ -1589,12 +2022,20 @@
     </footer>
 
     <script>
-        const STORE_KEY = 'orivix_students', SESSION_KEY = 'orivix_session';
+        const STORE_KEY = 'orivix_students', ENROLL_KEY = 'orivix_enrollments', SESSION_KEY = 'orivix_session';
         function getStudents() { try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; } catch { return []; } }
         function saveStudents(a) { localStorage.setItem(STORE_KEY, JSON.stringify(a)); }
+        function getEnrollments() { try { return JSON.parse(localStorage.getItem(ENROLL_KEY)) || []; } catch { return []; } }
+        function saveEnrollments(a) { localStorage.setItem(ENROLL_KEY, JSON.stringify(a)); }
         function getSession() { try { return JSON.parse(sessionStorage.getItem(SESSION_KEY)); } catch { return null; } }
 
-        // ── Init ─────────────────────────────────────────────────────────
+        // ── Helper: get enroll status for a student id ──
+        function getEnrollStatus(sid) {
+            const e = getEnrollments().find(e => e.studentId === sid);
+            return e ? e.status : 'none'; // 'none' | 'pending' | 'approved' | 'rejected'
+        }
+
+        // ── INIT ──
         (function init() {
             const sess = getSession();
             if (!sess) return; // guest
@@ -1603,8 +2044,8 @@
         })();
 
         function setupStudent(s) {
-            // hide guest nav, show chip
             document.getElementById('navGuest').style.display = 'none';
+            // profile chip
             const chip = document.getElementById('profileChip');
             chip.classList.add('visible');
             document.getElementById('chipAvatar').textContent = s.name.charAt(0).toUpperCase();
@@ -1615,6 +2056,23 @@
             document.getElementById('ddId').textContent = '🪪 ' + s.id;
             document.getElementById('ddPhone').textContent = '📞 ' + s.phone;
             document.getElementById('ddJoin').textContent = '📅 যোগদান: ' + s.joinDate;
+
+            const status = getEnrollStatus(s.id);
+            const statusMap = { none: { cls: 'pill-none', txt: '❌ Enrolled নও' }, pending: { cls: 'pill-pending', txt: '⏳ Approval Pending' }, approved: { cls: 'pill-enrolled', txt: '✅ Enrolled' }, rejected: { cls: 'sp-rejected', txt: '❌ Rejected' } };
+            const sm = statusMap[status] || statusMap.none;
+            document.getElementById('ddEnrollStatus').innerHTML = `<span class="enroll-status-pill ${sm.cls}">${sm.txt}</span>`;
+
+            // update enroll link in dropdown
+            if (status === 'approved') {
+                document.getElementById('ddEnrollLink').textContent = '✅ Enrolled আছো';
+                document.getElementById('ddEnrollLink').style.pointerEvents = 'none';
+                document.getElementById('ddEnrollLink').style.opacity = '.5';
+            } else if (status === 'pending') {
+                document.getElementById('ddEnrollLink').textContent = '⏳ Enrollment Pending';
+                document.getElementById('ddEnrollLink').style.pointerEvents = 'none';
+                document.getElementById('ddEnrollLink').style.opacity = '.5';
+            }
+
             // welcome banner
             const banner = document.getElementById('dashBanner');
             banner.style.display = 'block';
@@ -1622,26 +2080,42 @@
             document.getElementById('bannerName').textContent = 'স্বাগতম, ' + s.name + '! 👋';
             document.getElementById('bannerMeta').textContent = s.email + ' · ' + s.joinDate;
             document.getElementById('bannerIdPill').textContent = s.id;
-            // update CTA
-            document.getElementById('heroCta').style.background = 'rgba(76,223,128,0.15)';
-            document.getElementById('heroCta').style.webkitTextFillColor = 'var(--green)';
-            document.getElementById('heroCta').style.border = '1px solid rgba(76,223,128,0.3)';
-            document.getElementById('heroCta').removeAttribute('href');
-            document.getElementById('enrollBtn').style.background = 'rgba(76,223,128,0.15)';
-            document.getElementById('enrollBtn').style.color = 'var(--green)';
+            const enrollBtn = document.getElementById('bannerEnrollBtn');
+            if (status === 'approved') { enrollBtn.textContent = '✅ Enrolled'; enrollBtn.style.background = 'rgba(76,223,128,.2)'; enrollBtn.style.color = 'var(--green)'; enrollBtn.removeAttribute('href'); }
+            else if (status === 'pending') { enrollBtn.textContent = '⏳ Pending'; enrollBtn.style.background = 'rgba(245,197,66,.15)'; enrollBtn.style.color = 'var(--gold)'; enrollBtn.removeAttribute('href'); }
+
+            // hero CTA
+            const cta = document.getElementById('heroCta');
+            if (status === 'approved') { cta.textContent = '✅ তুমি Enrolled আছো'; cta.style.cssText = 'background:rgba(76,223,128,.15);-webkit-text-fill-color:var(--green);border:1px solid rgba(76,223,128,.3);display:inline-block;padding:16px 40px;border-radius:50px;font-weight:700;font-size:1.05rem;'; }
+            else if (status === 'pending') { cta.textContent = '⏳ Approval Pending'; cta.style.cssText = 'background:rgba(245,197,66,.12);-webkit-text-fill-color:var(--gold);border:1px solid rgba(245,197,66,.3);display:inline-block;padding:16px 40px;border-radius:50px;font-weight:700;font-size:1.05rem;'; }
+            else { cta.href = 'enroll.html'; }
+
+            // price card CTA
+            const eArea = document.getElementById('enrollCtaArea');
+            if (status === 'approved') { eArea.innerHTML = '<div class="enrolled-state">✅ তুমি Enrolled আছো! Videos দেখতে উপরে স্ক্রোল করো।</div>'; }
+            else if (status === 'pending') { eArea.innerHTML = '<div class="pending-state">⏳ Enrollment Pending — Admin approval-এর জন্য অপেক্ষা করো।</div>'; }
+            else { eArea.innerHTML = '<a href="enroll.html" class="enroll-btn">📝 Enroll করো</a>'; }
+
+            // Videos section
+            document.getElementById('videosSection').style.display = 'block';
+            if (status === 'approved') {
+                document.getElementById('videosGrid').style.display = 'grid';
+            } else if (status === 'pending') {
+                document.getElementById('pendingOverlay').style.display = 'block';
+            } else {
+                document.getElementById('lockedOverlay').style.display = 'block';
+            }
         }
 
         function setupAdmin() {
             document.getElementById('navGuest').style.display = 'none';
             document.getElementById('navAdmin').style.display = 'block';
             document.getElementById('adminSection').style.display = 'block';
-            renderStudentList();
+            renderAdmin();
         }
 
-        function toggleDropdown(e) {
-            e.stopPropagation();
-            document.getElementById('profileChip').classList.toggle('open');
-        }
+        // ── DROPDOWN ──
+        function toggleDropdown(e) { e.stopPropagation(); document.getElementById('profileChip').classList.toggle('open'); }
         document.addEventListener('click', () => document.getElementById('profileChip').classList.remove('open'));
 
         function copyIdDD() {
@@ -1653,46 +2127,100 @@
             document.getElementById('profileChip').classList.remove('open');
         }
 
-        function logout() {
-            sessionStorage.removeItem(SESSION_KEY);
-            window.location.reload();
+        function logout() { sessionStorage.removeItem(SESSION_KEY); window.location.reload(); }
+        function scrollToAdmin() { document.getElementById('adminSection').scrollIntoView({ behavior: 'smooth' }); }
+
+        // ── ADMIN RENDER ──
+        function switchAdminTab(tab) {
+            document.querySelectorAll('.atab').forEach((t, i) => t.classList.toggle('active', ['students', 'enrollments'][i] === tab));
+            document.getElementById('tabStudents').classList.toggle('active', tab === 'students');
+            document.getElementById('tabEnrollments').classList.toggle('active', tab === 'enrollments');
         }
 
-        function scrollToAdmin() {
-            document.getElementById('adminSection').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function renderStudentList() {
+        function renderAdmin() {
             const students = getStudents();
-            const list = document.getElementById('studentList');
-            if (!students.length) { list.innerHTML = '<div class="empty">এখনো কোনো student নেই।</div>'; return; }
-            list.innerHTML = students.map((s, i) => `
-    <div class="student-row">
-      <div>
-        <div class="s-name">${s.name}</div>
-        <div class="s-meta">${s.email} · ${s.phone}</div>
-        <div class="s-meta">যোগদান: ${s.joinDate}</div>
-      </div>
-      <div style="text-align:right;display:flex;flex-direction:column;gap:6px;align-items:flex-end">
-        <div class="s-id">${s.id}</div>
-        <button class="del-btn" onclick="deleteStudent(${i})">✕ মুছুন</button>
-      </div>
-    </div>`).join('');
+            const enrollments = getEnrollments();
+            const pending = enrollments.filter(e => e.status === 'pending').length;
+            const approved = enrollments.filter(e => e.status === 'approved').length;
+
+            document.getElementById('statTotal').textContent = students.length;
+            document.getElementById('statPending').textContent = pending;
+            document.getElementById('statApproved').textContent = approved;
+            document.getElementById('countStudents').textContent = students.length;
+            document.getElementById('countEnrollments').textContent = enrollments.length;
+
+            // Students list
+            const sl = document.getElementById('studentList');
+            if (!students.length) { sl.innerHTML = '<div class="empty">এখনো কোনো student নেই।</div>'; }
+            else {
+                sl.innerHTML = students.map((s, i) => {
+                    const es = getEnrollStatus(s.id);
+                    const spMap = { none: '<span class="status-pill sp-rejected">Not Enrolled</span>', pending: '<span class="status-pill sp-pending">Pending</span>', approved: '<span class="status-pill sp-enrolled">Enrolled</span>', rejected: '<span class="status-pill sp-rejected">Rejected</span>' };
+                    return `<div class="student-row">
+        <div>
+          <div class="s-name">${s.name}</div>
+          <div class="s-meta">${s.email} · ${s.phone}</div>
+          <div class="s-meta">যোগদান: ${s.joinDate}</div>
+        </div>
+        <div class="row-actions">
+          ${spMap[es] || spMap.none}
+          <div class="s-id">${s.id}</div>
+          <button class="del-btn" onclick="deleteStudent(${i})">✕ মুছুন</button>
+        </div>
+      </div>`;
+                }).join('');
+            }
+
+            // Enrollments list
+            const el = document.getElementById('enrollList');
+            if (!enrollments.length) { el.innerHTML = '<div class="empty">কোনো enrollment request নেই।</div>'; }
+            else {
+                el.innerHTML = enrollments.map((e, i) => {
+                    const stMap = {
+                        pending: `<button class="approve-btn" onclick="updateEnroll(${i},'approved')">✅ Approve</button><button class="reject-btn" onclick="updateEnroll(${i},'rejected')">✕ Reject</button>`,
+                        approved: `<span class="status-pill sp-enrolled">✅ Approved</span><button class="reject-btn" onclick="updateEnroll(${i},'rejected')">Revoke</button>`,
+                        rejected: `<span class="status-pill sp-rejected">❌ Rejected</span><button class="approve-btn" onclick="updateEnroll(${i},'approved')">Approve</button>`
+                    };
+                    return `<div class="student-row">
+        <div>
+          <div class="s-name">${e.studentName} <span class="s-id">${e.studentId}</span></div>
+          <div class="s-meta">💳 ${e.payment} · 🧾 ${e.txn}</div>
+          <div class="enroll-detail">📅 ${e.date}${e.note ? ` · 💬 ${e.note}` : ''}</div>
+        </div>
+        <div class="row-actions">${stMap[e.status] || ''}</div>
+      </div>`;
+                }).join('');
+            }
         }
 
         function deleteStudent(i) {
             if (!confirm('এই student মুছে ফেলবেন?')) return;
-            const arr = getStudents(); arr.splice(i, 1); saveStudents(arr); renderStudentList();
+            const arr = getStudents(); arr.splice(i, 1); saveStudents(arr); renderAdmin();
         }
 
-        function exportCSV() {
-            const students = getStudents();
-            if (!students.length) return alert('কোনো student নেই।');
-            const h = 'Student ID,নাম,Email,মোবাইল,যোগদান\n';
-            const r = students.map(s => `${s.id},"${s.name}",${s.email},${s.phone},${s.joinDate}`).join('\n');
-            const blob = new Blob(['\uFEFF' + h + r], { type: 'text/csv;charset=utf-8;' });
-            const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-            a.download = 'orivix_students.csv'; a.click();
+        function updateEnroll(i, status) {
+            const arr = getEnrollments(); arr[i].status = status; saveEnrollments(arr); renderAdmin();
+        }
+
+        function exportCSV(type) {
+            if (type === 'students') {
+                const s = getStudents();
+                if (!s.length) return alert('কোনো student নেই।');
+                const h = 'Student ID,নাম,Email,মোবাইল,যোগদান,Enroll Status\n';
+                const r = s.map(x => `${x.id},"${x.name}",${x.email},${x.phone},${x.joinDate},${getEnrollStatus(x.id)}`).join('\n');
+                dl('\uFEFF' + h + r, 'orivix_students.csv');
+            } else {
+                const e = getEnrollments();
+                if (!e.length) return alert('কোনো enrollment নেই।');
+                const h = 'Student ID,নাম,Payment,Transaction ID,Date,Status,Note\n';
+                const r = e.map(x => `${x.studentId},"${x.studentName}",${x.payment},${x.txn},${x.date},${x.status},"${x.note || ''}"`).join('\n');
+                dl('\uFEFF' + h + r, 'orivix_enrollments.csv');
+            }
+        }
+
+        function dl(data, name) {
+            const b = new Blob([data], { type: 'text/csv;charset=utf-8;' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = name; a.click();
         }
 
         function toggleMod(c) { c.classList.toggle('open'); }
